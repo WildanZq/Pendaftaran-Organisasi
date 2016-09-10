@@ -35,25 +35,6 @@
         android:layout_toStartOf="@+id/imageView"
         android:width="500px" />
 
-    <RadioButton
-        android:id="@+id/radioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="20px"
-        android:checked="false"
-        android:text="Laki-laki" />
-
-    <RadioButton
-        android:id="@+id/radioButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/radioButton"
-        android:layout_toEndOf="@+id/radioButton"
-        android:checked="false"
-        android:text="Perempuan" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -69,17 +50,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/radioButton"
+        android:layout_below="@+id/radioGroup"
         android:layout_marginTop="10px"
-        android:text="New Text"
+        android:text="Keahlian"
         android:textSize="40px" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textView2"
+        android:layout_toStartOf="@+id/daftar"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="20px"
+            android:checked="false"
+            android:text="Laki-laki" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px"
+            android:layout_toEndOf="@+id/textView3"
+            android:checked="false"
+            android:text="Perempuan" />
+
+    </RadioGroup>
 
     <Button
         android:id="@+id/daftar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/checkBox3"
-        android:layout_toStartOf="@+id/imageView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:text="Daftar" />
 
     <CheckBox
@@ -89,7 +100,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView3"
         android:layout_marginTop="20px"
-        android:text="New CheckBox" />
+        android:text="Design" />
 
     <CheckBox
         android:id="@+id/checkBox2"
@@ -97,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/checkBox"
-        android:text="New CheckBox" />
+        android:text="Coding" />
 
     <CheckBox
         android:id="@+id/checkBox3"
@@ -105,7 +116,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/checkBox2"
-        android:text="New CheckBox" />
+        android:text="Networking" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -120,7 +131,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/daftar"
-        android:textSize="40px" />
+        android:textSize="50px" />
 
     <TextView
         android:id="@+id/hasil"
@@ -130,6 +141,23 @@
         android:layout_below="@+id/judul"
         android:layout_marginLeft="30px"
         android:layout_marginTop="10px"
-        android:textSize="30px" />
+        android:textSize="40px" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/checkBox3"
+        android:text="Kota Asal"
+        android:textSize="40px" />
+
+    <Spinner
+        android:id="@+id/asal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView4"
+        android:entries="@arrKota/kota" />
 
 </RelativeLayout>
