@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,6 +18,13 @@ public class MainActivity extends AppCompatActivity {
     RadioButton rbPr;
     Button bDaftar;
     TextView erRb;
+    CheckBox cbDesign;
+    CheckBox cbCoding;
+    CheckBox cbNetworking;
+    TextView erCb;
+    TextView tvKota;
+    Spinner spKota;
+    TextView erSp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
         Hasil = (TextView) findViewById(R.id.hasil);
         Judul = (TextView) findViewById(R.id.judul);
         erRb = (TextView) findViewById(R.id.radioErr);
+        cbDesign = (CheckBox) findViewById(R.id.design);
+        cbCoding = (CheckBox) findViewById(R.id.coding);
+        cbNetworking = (CheckBox) findViewById(R.id.networking);
+        erCb = (TextView) findViewById(R.id.checkErr);
+        tvKota = (TextView) findViewById(R.id.textView4);
+        spKota = (Spinner) findViewById(R.id.asal);
+        erSp = (TextView) findViewById(R.id.spinnerErr);
 
         bDaftar.setOnClickListener(new View.OnClickListener() {
             private boolean textValid() {
@@ -42,37 +58,75 @@ public class MainActivity extends AppCompatActivity {
             }
 
             private boolean rbValid() {
-                String laki = rbLk.getText().toString();
-                String pr = rbPr.getText().toString();
-                return !(laki.isEmpty() || pr.isEmpty());
+                return rbLk.isChecked() || rbPr.isChecked();
             }
 
-            private boolean Validasi() {
-                return textValid() && rbValid();
+            private boolean cbValid() {
+                return cbAhli() != "";
+            }
+
+            private boolean spValid() {
+                String sp = spKota.getSelectedItem().toString();
+                if (sp == spKota.getItemAtPosition(0).toString()) {
+                    erSp.setText("*Anda belum memilih Kota Asal");
+                    return false;
+                } else {
+                    erSp.setText("");
+                    return true;
+                }
             }
 
             private boolean isValid() {
-                return Validasi();
+                return textValid() && rbValid() && cbValid() && spValid();
             }
 
             private java.lang.String rbText() {
                 String Gender = null;
                 if (rbLk.isChecked()) {
                     Gender = rbLk.getText().toString();
+                    erRb.setText("");
                 } else if (rbPr.isChecked()) {
                     Gender = rbPr.getText().toString();
+                    erRb.setText("");
                 } else {
                     erRb.setText("*Anda belum memilih Gender");
                 }
                 return Gender;
             }
 
+            private java.lang.String cbAhli() {
+                String Ahli = "";
+                if (cbDesign.isChecked()) {
+                    Ahli += " " + cbDesign.getText().toString();
+                    erCb.setText("");
+                }
+                if (cbCoding.isChecked()) {
+                    Ahli += " " + cbCoding.getText().toString();
+                    erCb.setText("");
+                }
+                if (cbNetworking.isChecked()) {
+                    Ahli += " " + cbNetworking.getText().toString();
+                    erCb.setText("");
+                }
+                if (Ahli == "") {
+                    erCb.setText("*Anda harus memiliki keahlian");
+                }
+                return Ahli;
+            }
+
             private void doProcess() {
+                String nama = etNama.getText().toString();
+                String gender = rbText();
+                String ahli = cbAhli();
+                String asal = spKota.getSelectedItem().toString();
+                spValid();
                 if (isValid()) {
-                    String nama = etNama.getText().toString();
-                    String gender = rbText();
                     Judul.setText("Data Terkirim");
-                    Hasil.setText("Nama: " + nama + "\nGender: " + gender);
+                    erRb.setText("");
+                    Hasil.setText("Nama: " + nama + "\nGender: " + gender + "\nKeahlian:" + ahli + "\nKota Asal: " + asal);
+                } else {
+                    Judul.setText("");
+                    Hasil.setText("");
                 }
             }
                                        @Override
